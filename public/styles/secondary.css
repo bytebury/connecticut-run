@@ -143,6 +143,32 @@ table caption {
 	color: #555;
 }
 
+.card.news {
+	border-style: dashed;
+	padding: 6px;
+	position: relative;
+	overflow: hidden;
+}
+
+.card.news span:first-of-type {
+	color: var(--accent-color-light);
+}
+
+.card.news::before {
+	content: "";
+	position: absolute;
+	top: -80px;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 80%;
+	height: 300px;
+	background: radial-gradient(circle at 50% 0%, var(--accent-color));
+	border-radius: 50%;
+	filter: blur(40px);
+	opacity: 0.05;
+	pointer-events: none;
+}
+
 @keyframes fadeIn {
 	0% {
 		opacity: 0;

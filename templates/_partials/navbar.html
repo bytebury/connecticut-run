@@ -1,23 +1,59 @@
 <nav id="navbar">
-    <div class="container">
-        {% if let Some(user) = shared.current_user %}
-            <a href="/dashboard">
-                <h1 class="brand">{{ shared.app_info.name }}</h1>
-            </a>
-        {% else %}
-            <a href="/">
-                <h1 class="brand">{{ shared.app_info.name }}</h1>
-            </a>
-        {% endif %}
-        <button class="btn success" onclick="openAppDrawer()" aria-label="open menu">
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 width="20"
-                 height="20"
-                 fill="currentColor"
-                 style="display: block"
-                 viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5" />
-            </svg>
-        </button>
-    </div>
+	<div class="container">
+		{% if let Some(user) = shared.current_user %}
+		<a href="/dashboard">
+			<h1 class="brand">{{ shared.app_info.name }}</h1>
+		</a>
+		{% else %}
+		<a href="/">
+			<h1 class="brand">{{ shared.app_info.name }}</h1>
+		</a>
+		{% endif %}
+		<ul>
+			<li><a href="/">Members</a></li>
+			<li><a href="/">Races</a></li>
+			<li>
+				<button class="btn" aria-label="enable dark mode">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke-width="1.5"
+						stroke="currentColor"
+						style="display: block"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+						/>
+					</svg>
+				</button>
+			</li>
+			<li>
+				<button
+					class="btn"
+					style="padding: 4px 8px; margin-top: 2px"
+					onclick="openAppDrawer()"
+					aria-label="open menu"
+				>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="24"
+						height="24"
+						fill="currentColor"
+						style="display: block"
+						viewBox="0 0 16 16"
+					>
+						<path
+							fill-rule="evenodd"
+							d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"
+						/>
+					</svg>
+				</button>
+			</li>
+		</ul>
+	</div>
 </nav>

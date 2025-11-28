@@ -1,40 +1,112 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <head>
-        <title>{{ shared.app_info.name }} | Homepage</title>
-        <meta name="description" content="A template application." />
-        <link rel="canonical" href="{{ shared.app_info.website_url }}" />
-        {% include "_partials/meta.html" %}
-        {% include "_partials/scripts.html" %}
-    </head>
-    <body>
-        {% include "_partials/navbar.html" %}
-        <main>
-            <div class="container">
-                <section class="card flex-col">
-                    <h1>Welcome to {{ shared.app_info.name }}!</h1>
-                    <div class="flex-col gap-2">
-                        <h2>Buttons</h2>
-                        <div class="flex">
-                            <button class="link">link</button>
-                            <button class="btn outline">outline</button>
-                            <button class="btn outline-hover">outline-hover</button>
-                            <button class="btn success">success</button>
-                            <button class="btn info">info</button>
-                            <button class="btn warning">warning</button>
-                            <button class="btn danger">danger</button>
-                        </div>
-                    </div>
-                    <div class="flex-col gap-2">
-                        <h2>Pills</h2>
-                        <div class="flex">
-                            <span class="pill pro">Professional</span>
-                            <span class="pill admin">Admin</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-        </main>
-        {% include "_partials/footer.html" %}
-    </body>
+	<head>
+		<title>{{ shared.app_info.name }} | Homepage</title>
+		<meta name="description" content="A template application." />
+		<link rel="canonical" href="{{ shared.app_info.website_url }}" />
+		{% include "_partials/meta.html" %} {% include "_partials/scripts.html" %}
+	</head>
+	<body>
+		{% include "_partials/navbar.html" %}
+		<main>
+			<article class="container flex-col">
+				<section class="card text-center news header-gradient">
+					<span>News:</span> Something exciting is in the works for Run169.
+				</section>
+				<section class="flex-col text-center" style="margin-top: 24px; margin-bottom: 38px">
+					<h1 class="accent-color">The simplest way to track your Run169 progress</h1>
+					<p>
+						Focus on having fun after your races. We offer the easiest way to track your
+						progress through Run169.
+					</p>
+					<div>
+						<button class="btn info" style="padding-left: 24px; padding-right: 24px">
+							Create Your Account
+						</button>
+					</div>
+				</section>
+				<div class="grid cols-2">
+					<section class="card hoverable">
+						<h2 class="accent-color">We Submit Towns for You</h2>
+						<p>
+							When you create your account, you'll be asked to provide your Run169
+							details. Then, once you submit towns on our application we will submit
+							the form on your behalf as you finish your races. One less thing for you
+							to worry about and remember!
+						</p>
+					</section>
+					<section class="card hoverable">
+						<h2 class="accent-color">Add Friends</h2>
+						<p>
+							You can search and add friends to your Run169 account. This will allow
+							you to share your progress with your friends and brag about your
+							achievements.
+						</p>
+					</section>
+					<section class="card hoverable">
+						<h2 class="accent-color">Save Your Times</h2>
+						<p>
+							You can save your times for each race you complete. This will allow you
+							to track your progress over time and see how you're improving. You can
+							also share your times with your friends and compare your progress with
+							theirs.
+						</p>
+					</section>
+					<section class="card hoverable">
+						<h2 class="accent-color">Find Races and Results</h2>
+						<p>
+							You can search for races near you or browse through our list of upcoming
+							events. This will help you find races that fit your schedule and
+							interests. If you ran a race that isn't on our list, you can add it
+							yourself!
+						</p>
+					</section>
+					<section class="card hoverable">
+						<h2 class="accent-color">Share Your Profile</h2>
+						<p>
+							Since your profile will have a direct link, you'll be able to view your
+							Connecticut Run Map as you make progress towards completing Run169. You
+							can share this link with your friends and family to show them your
+							progress.
+						</p>
+					</section>
+					<section class="flex-col card accent-color-bg">
+						<div>
+							<h2 style="font-weight: 800">Open Sourced</h2>
+							<p>
+								This project is open sourced on GitHub. You can view the code,
+								contribute to the project, and even deploy your own instance of the
+								app.
+							</p>
+						</div>
+						<a
+							class="flex items-center gap-1 w-fit"
+							style="margin-top: auto; color: white"
+							href="https://github.com/bytebury/connecticut-run"
+							target="_blank"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="1em"
+								height="1em"
+								fill="none"
+								stroke="currentColor"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								viewBox="0 0 24 24"
+							>
+								<path
+									d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"
+								></path>
+								<path d="M9 18c-4.51 2-5-2-7-2"></path>
+							</svg>
+							View Code on GitHub</a
+						>
+					</section>
+				</div>
+			</article>
+		</main>
+		{% include "_partials/footer.html" %}
+	</body>
 </html>

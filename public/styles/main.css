@@ -1,6 +1,6 @@
 :root {
 	--foreground: #222;
-	--background: #fff1e2;
+	--background: #fff;
 	--success-bg: #4a794c;
 	--success-bg-hover: #3c6c3f;
 	--success-fg: #fff;
@@ -15,29 +15,83 @@
 	--warning-fg: #fff;
 	--pro-color: #ffdbcf;
 	--admin-color: #e0ffc4;
-	--nav-bg: #53473b;
-	--nav-fg: #fff;
-	--footer-bg: #ffe9d0;
+	--nav-bg: var(--background);
+	--nav-fg: var(--foreground);
+	--nav-hover-bg: #00000010;
+	--footer-bg: var(--background);
 	--footer-fg: #444;
-	--card-bg: #fff9f2;
+	--card-bg: var(--background);
 	--drawer-bg: var(--background);
-	--input-bg: #fff;
+	--input-bg: var(--background);
 	--footer-border: 1px solid #00000020;
-	--link: #a03500;
-	--muted: #666;
+	--accent-color: #0751cf;
+	--accent-color-light: #0751cf;
+	--accent-color-shadow: #0751cf20;
+	--accent-color-active: #0751cf;
+	--link: var(--accent-color);
+	--muted: #444;
 	--default-spacing: 16px;
 	--default-border-color: #d1d1d1;
 	--default-border-hover-color: #777;
 	--default-border: 1px solid var(--default-border-color);
 	--underlay: #22222250;
 	--pill-border: 1px solid #00000020;
-	--table-row-hover: #f3eee8;
+	--table-row-hover: #00000010;
 	--transition:
-		background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+		background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground: #fff;
+		--background: #111216;
+		--success-bg: #4a794c;
+		--success-bg-hover: #3c6c3f;
+		--success-fg: #fff;
+		--danger-bg: #945454;
+		--danger-bg-hover: #874a4a;
+		--danger-fg: #fff;
+		--info-bg: #516e84;
+		--info-bg-hover: #385265;
+		--info-fg: #fff;
+		--warning-bg: #836342;
+		--warning-bg-hover: #6f5335;
+		--warning-fg: #fff;
+		--pro-color: #ffdbcf;
+		--admin-color: #e0ffc4;
+		--nav-bg: var(--background);
+		--nav-fg: var(--foreground);
+		--nav-hover-bg: #ffffff15;
+		--footer-bg: var(--background);
+		--footer-fg: #888;
+		--card-bg: var(--background);
+		--drawer-bg: var(--background);
+		--input-bg: var(--background);
+		--footer-border: 1px solid #00000020;
+		--accent-color: #0751cf;
+		--accent-color-light: #8ec5ff;
+		--accent-color-shadow: #0751cf20;
+		--accent-color-active: #0751cf20;
+		--link: var(--accent-color-light);
+		--muted: #444;
+		--default-spacing: 16px;
+		--default-border-color: #ffffff15;
+		--default-border-hover-color: #777;
+		--default-border: 1px solid var(--default-border-color);
+		--underlay: #22222250;
+		--pill-border: 1px solid #00000020;
+		--table-row-hover: #00000010;
+		--transition:
+			background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+			box-shadow 0.3s ease;
+	}
 }
 
 * {
 	box-sizing: border-box;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	line-height: 1.5rem;
+	font-size: 1.05rem;
 }
 
 html,
@@ -46,9 +100,7 @@ body {
 	flex-direction: column;
 	margin: 0;
 	padding: 0;
-	font-family:
-		system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-		Arial, sans-serif;
+	font-family: Georgia, "Times New Roman", Times, serif;
 	background-color: var(--background);
 	color: var(--foreground);
 	min-height: 100dvh;
@@ -56,6 +108,7 @@ body {
 
 h1 {
 	font-size: 1.5rem;
+	font-weight: 500;
 }
 
 .container {
@@ -75,11 +128,13 @@ nav#navbar {
 	background: var(--nav-bg);
 	color: var(--nav-fg);
 	padding: 8px 0;
+	border-bottom: 1px solid var(--default-border-color);
 }
 
 nav#navbar h1 {
 	margin: 0;
 	font-size: 1.2rem;
+	line-height: 1.5rem;
 }
 
 nav#navbar a {
@@ -91,6 +146,35 @@ nav#navbar .container {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+nav#navbar ul {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+nav#navbar ul li button {
+	padding: 6px 8px;
+	transition: var(--transition);
+}
+
+nav#navbar ul li a {
+	display: block;
+	padding: 4px 8px;
+	transition: var(--transition);
+}
+
+nav#navbar ul li button:hover,
+nav#navbar ul li a:hover {
+	background: var(--nav-hover-bg);
+}
+
+nav#navbar h1.brand {
+	font-weight: 800;
 }
 
 #app_drawer {
@@ -114,6 +198,16 @@ footer#footer {
 	padding: 8px 0;
 }
 
+.grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: var(--default-spacing);
+}
+
+.grid.cols-2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
 .flex {
 	display: flex;
 	flex-direction: row;
@@ -135,8 +229,28 @@ footer#footer {
 	gap: 8px;
 }
 
+.gap-0 {
+	gap: 0;
+}
+
+.w-fit {
+	width: fit-content;
+}
+
 .items-center {
 	align-items: center;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
 }
 
 .muted {
@@ -148,19 +262,15 @@ p {
 	padding: 0;
 }
 
-h1,
-h2,
-h3 {
-	font-weight: 900;
-	margin: 0;
-	padding: 0;
-}
-
 .card {
 	padding: var(--default-spacing);
 	background: var(--card-bg);
-	border-radius: 12px;
-	border: var(--pill-border);
+	border: 1px solid var(--default-border-color);
+	transition: var(--transition);
+}
+
+.card.hoverable:hover {
+	box-shadow: 5px 5px var(--accent-color-shadow);
 }
 
 form .form-control,
@@ -184,7 +294,7 @@ select {
 	padding: 8px;
 	border-radius: 8px;
 	border: var(--default-border);
-	font-size: 1rem;
+	font-size: inherit;
 	width: 100%;
 	background: var(--input-bg);
 	transition: var(--transition);
@@ -218,8 +328,8 @@ button {
 
 button.btn {
 	padding: 6px 10px;
-	border-radius: 6px;
 	transition: var(--transition);
+	color: inherit;
 }
 
 button.outline {
@@ -247,12 +357,13 @@ button.success:hover {
 
 button.info {
 	border: var(--pill-border);
-	background: var(--info-bg);
+	background: var(--accent-color);
 	color: var(--info-fg);
+	border-bottom: 4px solid #0541a8;
 }
 
 button.info:hover {
-	background: var(--info-bg-hover);
+	background: #0541a8;
 }
 
 button.warning {
@@ -273,4 +384,38 @@ button.danger {
 
 button.danger:hover {
 	background: var(--danger-bg-hover);
+}
+
+.accent-color {
+	color: var(--accent-color-light);
+}
+
+.accent-color-bg {
+	color: white;
+	background: var(--accent-color-active);
+}
+
+h1,
+h2,
+h3 {
+	padding: 0;
+	margin: 0;
+}
+
+h1 {
+	font-size: 1.75rem;
+	line-height: 2.15rem;
+}
+
+h2 {
+	font-weight: 500;
+	font-size: 1.3rem;
+	line-height: 1.65rem;
+}
+
+/* Mobile Style */
+@media (max-width: 768px) {
+	.grid.cols-2 {
+		grid-template-columns: repeat(1, 1fr);
+	}
 }

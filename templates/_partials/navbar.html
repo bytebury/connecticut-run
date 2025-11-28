@@ -43,7 +43,11 @@
 			<li class="desktop-only"><a href="/">Members</a></li>
 			<li class="desktop-only"><a href="/">Races</a></li>
 			<li>
-				<button class="btn" aria-label="enable dark mode">
+				<button
+					class="btn"
+					aria-label="enable toggle light/dark mode"
+					onclick="toggleTheme()"
+				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
 						width="20"
@@ -86,7 +90,14 @@
 			</li>
 			{% if let Some(user) = shared.current_user %}
 			<li>
-				<img class="avatar" style="margin-top: 4px" src="https://avatars.githubusercontent.com/u/104793781?v=4" alt="User Avatar" width="32" height="32" />
+				<img
+					class="avatar"
+					style="margin-top: 4px"
+					src="https://avatars.githubusercontent.com/u/104793781?v=4"
+					alt="User Avatar"
+					width="32"
+					height="32"
+				/>
 			</li>
 			{% endif %}
 		</ul>

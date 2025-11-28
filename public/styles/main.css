@@ -6,7 +6,7 @@
 	--nav-bg: var(--background);
 	--nav-fg: var(--foreground);
 	--nav-hover-bg: #00000010;
-	--footer-bg: var(--background);
+	--footer-bg: #fafafa;
 	--footer-fg: #444;
 	--footer-border: 1px solid #00000020;
 	--card-bg: var(--background);
@@ -16,6 +16,7 @@
 	--accent-color-light: #0751cf;
 	--accent-color-shadow: #0751cf20;
 	--accent-color-active: #0751cf;
+	--accent-color-border: #0541a8;
 	--link: var(--accent-color);
 	--muted: #444;
 	--default-spacing: 16px;
@@ -29,39 +30,36 @@
 		background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (prefers-color-scheme: dark) {
-	:root {
-		--foreground: #fff;
-		--background: #111216;
-		--pro-color: #ffdbcf;
-		--admin-color: #e0ffc4;
-		--nav-bg: var(--background);
-		--nav-fg: var(--foreground);
-		--nav-hover-bg: #ffffff15;
-		--footer-bg: #000;
-		--footer-fg: #888;
-		--footer-border: 1px solid #00000020;
-		--card-bg: var(--background);
-		--drawer-bg: var(--background);
-		--input-bg: var(--background);
-		---accent-color: #0751cf;
-		--accent-color-light: #8ec5ff;
-		--accent-color-shadow: #0751cf20;
-		--accent-color-active: #0751cf20;
-		--accent-color-border: #0541a8;
-		--link: var(--accent-color-light);
-		--muted: #444;
-		--default-spacing: 16px;
-		--default-border-color: #ffffff15;
-		--default-border-hover-color: #777;
-		--default-border: 1px solid var(--default-border-color);
-		--underlay: #22222250;
-		--pill-border: 1px solid #00000020;
-		--table-row-hover: #00000010;
-		--transition:
-			background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
-			box-shadow 0.3s ease;
-	}
+:root[data-theme="dark"] {
+	--foreground: #fff;
+	--background: #111216;
+	--pro-color: #ffdbcf;
+	--admin-color: #e0ffc4;
+	--nav-bg: var(--background);
+	--nav-fg: var(--foreground);
+	--nav-hover-bg: #ffffff15;
+	--footer-bg: #000;
+	--footer-fg: #888;
+	--footer-border: 1px solid #00000020;
+	--card-bg: var(--background);
+	--drawer-bg: var(--background);
+	--input-bg: var(--background);
+	---accent-color: #0751cf;
+	--accent-color-light: #8ec5ff;
+	--accent-color-shadow: #0751cf20;
+	--accent-color-active: #0751cf20;
+	--accent-color-border: #0541a8;
+	--link: var(--accent-color-light);
+	--muted: #444;
+	--default-spacing: 16px;
+	--default-border-color: #ffffff15;
+	--default-border-hover-color: #777;
+	--default-border: 1px solid var(--default-border-color);
+	--underlay: #22222250;
+	--pill-border: 1px solid #00000020;
+	--table-row-hover: #00000010;
+	--transition:
+		background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 * {
@@ -248,6 +246,7 @@ p {
 }
 
 .card.hoverable:hover {
+	cursor: default;
 	box-shadow: 5px 5px var(--accent-color-shadow);
 }
 
@@ -310,6 +309,12 @@ button.btn {
 	transition: var(--transition);
 	color: inherit;
 	border-radius: 4px;
+}
+
+button.btn.info {
+	color: white;
+	border-bottom: 4px solid var(--accent-color-border);
+	background: var(--accent-color);
 }
 
 button.outline {

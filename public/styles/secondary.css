@@ -74,7 +74,7 @@
 	gap: 8px;
 }
 
-#modal .form-actions button[type="submit"] {
+.form-actions button[type="submit"] {
 	padding: 4px 12px;
 	border-radius: 4px;
 	background: var(--accent-color);
@@ -82,11 +82,11 @@
 	color: white;
 }
 
-#modal .form-actions button[type="submit"]:hover {
+.form-actions button[type="submit"]:hover {
 	background: var(--accent-color-border);
 }
 
-#modal .form-actions button[type="reset"] {
+.form-actions button[type="reset"] {
 	padding: 4px 12px;
 	border-radius: 4px;
 	background: none;
@@ -94,7 +94,7 @@
 	color: var(--foreground);
 }
 
-#modal .form-actions button[type="reset"]:hover {
+.form-actions button[type="reset"]:hover {
 	background: var(--nav-hover-bg);
 }
 

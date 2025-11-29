@@ -52,7 +52,8 @@
 		<ul>
 			<li class="desktop-only"><a href="/members">Members</a></li>
 			<li class="desktop-only"><a href="/">Races</a></li>
-			{% if let Some(user) = shared.current_user %}
+			{% if let Some(user) = shared.current_user %} {% if let Some(runner_id) = user.runner_id
+			%}
 			<li>
 				<button
 					class="accent-color btn info-outline"
@@ -63,7 +64,7 @@
 					<strong>Submit&nbsp;Town</strong>
 				</button>
 			</li>
-			{% else %}
+			{% endif %} {% else %}
 			<li style="margin-right: -2px">
 				<button
 					class="btn"

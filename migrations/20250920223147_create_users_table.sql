@@ -5,7 +5,7 @@ CREATE TABLE users (
     first_name TEXT NOT NULL,
     last_name TEXT NOT NULL DEFAULT '',
     full_name TEXT NOT NULL,
-    hometown INTEGER REFERENCES towns(id),
+    hometown_id INTEGER REFERENCES towns(id),
     image_url TEXT NOT NULL,
     role TEXT NOT NULL DEFAULT 'user',
     verified BOOLEAN NOT NULL DEFAULT 0,

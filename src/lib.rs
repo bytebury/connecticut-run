@@ -62,7 +62,7 @@ pub struct AppInfo {
 impl AppInfo {
     pub fn new() -> Self {
         Self {
-            name: env::var("APP_NAME").unwrap_or("Crust App".to_string()),
+            name: env::var("APP_NAME").unwrap_or("CTRunner".to_string()),
             version: env::var("APP_VERSION").unwrap_or("local".to_string()),
             website_url: env::var("APP_WEBSITE_URL")
                 .unwrap_or("https://github.com/bytebury/crust".to_string()),

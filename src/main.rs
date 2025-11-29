@@ -13,7 +13,7 @@ async fn main() {
         copy_assets();
     }
 
-    crust::start().await;
+    ctrunner::start().await;
 }
 
 fn is_dev() -> bool {

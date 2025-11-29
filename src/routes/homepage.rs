@@ -1,5 +1,5 @@
 use crate::domain::Town;
-use crate::domain::user::UpdateRunnerInfoForm;
+use crate::domain::user::UpdateRunnerInfo;
 use crate::{
     SharedState,
     domain::rbac::Role,
@@ -44,7 +44,7 @@ struct DashboardTemplate {
 struct UpdateRunnerInfoTemplate {
     shared: SharedContext,
     towns: Vec<Town>,
-    form: UpdateRunnerInfoForm,
+    form: UpdateRunnerInfo,
     form_error_message: Option<String>,
 }
 
@@ -77,7 +77,7 @@ async fn update_runner_info_page(
 async fn update_runner_info(
     State(state): State<SharedState>,
     OrphanUser(user): OrphanUser,
-    Form(form): Form<UpdateRunnerInfoForm>,
+    Form(form): Form<UpdateRunnerInfo>,
 ) -> impl IntoResponse {
     let user_id = user.id;
     let towns = state.town_service.find_all().await;

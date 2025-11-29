@@ -2,7 +2,7 @@ use crate::{
     DbConnection,
     domain::{
         User,
-        user::{NewUser, UpdateRunnerInfoForm, UpdateUser},
+        user::{NewUser, UpdateRunnerInfo, UpdateUser},
     },
     infrastructure::db::UserRepository,
     util::pagination::{PaginatedResponse, Pagination},
@@ -33,7 +33,7 @@ impl UserService {
     pub async fn update_runner_info(
         &self,
         user_id: i64,
-        runner_info: &UpdateRunnerInfoForm,
+        runner_info: &UpdateRunnerInfo,
     ) -> Result<User, sqlx::Error> {
         self.user_repository
             .update_runner_info(user_id, runner_info)

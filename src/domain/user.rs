@@ -1,5 +1,3 @@
-use std::iter::Filter;
-
 use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 use sqlx::FromRow;
@@ -85,14 +83,14 @@ impl Paginatable for User {
 }
 
 #[derive(Deserialize, Serialize, Default, Debug)]
-pub struct UpdateRunnerInfoForm {
+pub struct UpdateRunnerInfo {
     pub runner_id: String,
     pub first_name: String,
     pub last_name: String,
     pub hometown_id: Option<String>,
 }
 
-impl Validate for UpdateRunnerInfoForm {
+impl Validate for UpdateRunnerInfo {
     fn validate(&self) -> Result<(), String> {
         if self.runner_id.is_whitespace_or_empty() {
             return Err("Member ID cannot be empty".to_string());

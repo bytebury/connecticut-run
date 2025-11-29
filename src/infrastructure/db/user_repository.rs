@@ -1,5 +1,5 @@
 use crate::DbConnection;
-use crate::domain::user::{UpdateRunnerInfoForm, UpdateUser};
+use crate::domain::user::{UpdateRunnerInfo, UpdateUser};
 use crate::domain::{User, user::NewUser};
 use crate::util::pagination::{Paginatable, PaginatedResponse, Pagination};
 use sqlx::{query, query_as};
@@ -42,7 +42,7 @@ impl UserRepository {
     pub async fn update_runner_info(
         &self,
         user_id: i64,
-        user: &UpdateRunnerInfoForm,
+        user: &UpdateRunnerInfo,
     ) -> Result<User, sqlx::Error> {
         query_as(r#"UPDATE users SET first_name = ?, last_name = ?, runner_id = ?, hometown_id = ?, full_name = ?, updated_at = current_timestamp WHERE id = ? RETURNING *"#)
             .bind(&user.first_name)

@@ -25,7 +25,7 @@ pub struct NewUser {
     pub email: String,
     pub verified: bool,
     pub first_name: String,
-    pub last_name: Option<String>,
+    pub last_name: String,
     pub full_name: String,
     pub image_url: String,
     pub locked: bool,
@@ -39,7 +39,7 @@ impl From<GoogleUser> for NewUser {
             email: google_user.email,
             verified: google_user.email_verified,
             first_name: google_user.given_name.unwrap_or(google_user.name.clone()),
-            last_name: google_user.family_name,
+            last_name: google_user.family_name.unwrap_or("".to_string()),
             full_name: google_user.name,
             image_url: google_user.picture,
             locked: false,
@@ -52,6 +52,7 @@ impl From<GoogleUser> for NewUser {
 #[derive(Serialize, Deserialize, FromRow, Clone)]
 pub struct User {
     pub id: i64,
+    pub runner_id: Option<i64>,
     pub email: String,
     pub verified: bool,
     pub first_name: String,

@@ -14,8 +14,8 @@ pub struct UpdateUser {
     pub role: Role,
 }
 
-impl From<User> for UpdateUser {
-    fn from(user: User) -> Self {
+impl From<UserView> for UpdateUser {
+    fn from(user: UserView) -> Self {
         Self {
             id: user.id,
             locked: user.locked,
@@ -76,9 +76,27 @@ impl User {
     }
 }
 
-impl Paginatable for User {
+#[derive(Serialize, Deserialize, FromRow, Clone)]
+pub struct UserView {
+    pub id: i64,
+    pub runner_id: Option<i64>,
+    pub hometown_id: Option<i64>,
+    pub hometown: Option<String>,
+    pub email: String,
+    pub verified: bool,
+    pub first_name: String,
+    pub last_name: String,
+    pub full_name: String,
+    pub image_url: String,
+    pub role: Role,
+    pub locked: bool,
+    pub created_at: NaiveDateTime,
+    pub updated_at: NaiveDateTime,
+}
+
+impl Paginatable for UserView {
     fn table_name() -> &'static str {
-        "users"
+        "users_view"
     }
 }
 

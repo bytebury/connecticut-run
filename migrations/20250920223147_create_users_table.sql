@@ -16,3 +16,10 @@ CREATE TABLE users (
 
 CREATE INDEX idx_users_email ON users(email);
 CREATE INDEX idx_users_runner_id ON users(runner_id);
+
+CREATE VIEW users_view AS
+SELECT
+	user.*,
+	town.display_name AS hometown
+FROM users user
+LEFT JOIN towns town ON user.hometown_id = town.id;

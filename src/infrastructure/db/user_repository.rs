@@ -1,5 +1,5 @@
 use crate::DbConnection;
-use crate::domain::user::{UpdateRunnerInfo, UpdateUser};
+use crate::domain::user::{UpdateRunnerInfo, UpdateUser, UserView};
 use crate::domain::{User, user::NewUser};
 use crate::util::pagination::{Paginatable, PaginatedResponse, Pagination};
 use sqlx::{query, query_as};
@@ -12,8 +12,8 @@ impl UserRepository {
         Self { db: db.clone() }
     }
 
-    pub async fn find_by_id(&self, id: i64) -> Result<User, sqlx::Error> {
-        query_as(r#"SELECT * FROM users WHERE id = ?"#)
+    pub async fn find_by_id(&self, id: i64) -> Result<UserView, sqlx::Error> {
+        query_as(r#"SELECT * FROM users_view WHERE id = ?"#)
             .bind(id)
             .fetch_one(self.db.as_ref())
             .await
@@ -26,7 +26,7 @@ impl UserRepository {
             .await
     }
 
-    pub async fn update(&self, user: &UpdateUser) -> Result<User, sqlx::Error> {
+    pub async fn update(&self, user: &UpdateUser) -> Result<UserView, sqlx::Error> {
         let _ = query(
             r#"UPDATE users SET role = ?, locked = ?, updated_at = current_timestamp WHERE id = ?"#,
         )
@@ -55,10 +55,14 @@ impl UserRepository {
             .await
     }
 
-    pub async fn search(&self, pagination: &Pagination, search: &str) -> PaginatedResponse<User> {
+    pub async fn search(
+        &self,
+        pagination: &Pagination,
+        search: &str,
+    ) -> PaginatedResponse<UserView> {
         let pattern = &format!("%{}%", search.to_lowercase());
 
-        User::paginate_filter(
+        UserView::paginate_filter(
             &self.db,
             pagination,
             Some(r#"LOWER(full_name) LIKE ? OR LOWER(email) LIKE ? ORDER BY updated_at DESC"#),

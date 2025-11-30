@@ -2,7 +2,7 @@ use crate::{
     DbConnection,
     domain::{
         User,
-        user::{NewUser, UpdateRunnerInfo, UpdateUser},
+        user::{NewUser, UpdateRunnerInfo, UpdateUser, UserView},
     },
     infrastructure::db::UserRepository,
     util::pagination::{PaginatedResponse, Pagination},
@@ -18,7 +18,7 @@ impl UserService {
         }
     }
 
-    pub async fn find_by_id(&self, user_id: i64) -> Result<User, sqlx::Error> {
+    pub async fn find_by_id(&self, user_id: i64) -> Result<UserView, sqlx::Error> {
         self.user_repository.find_by_id(user_id).await
     }
 
@@ -26,7 +26,7 @@ impl UserService {
         self.user_repository.find_by_email(email).await
     }
 
-    pub async fn update(&self, user: &UpdateUser) -> Result<User, sqlx::Error> {
+    pub async fn update(&self, user: &UpdateUser) -> Result<UserView, sqlx::Error> {
         self.user_repository.update(user).await
     }
 
@@ -40,7 +40,11 @@ impl UserService {
             .await
     }
 
-    pub async fn search(&self, pagination: &Pagination, search: &str) -> PaginatedResponse<User> {
+    pub async fn search(
+        &self,
+        pagination: &Pagination,
+        search: &str,
+    ) -> PaginatedResponse<UserView> {
         self.user_repository.search(pagination, search).await
     }
 

@@ -1,4 +1,4 @@
-use crate::domain::rbac::Role;
+use crate::domain::{rbac::Role, user::UserView};
 use askama::Template;
 use askama_web::WebTemplate;
 use axum::{
@@ -10,7 +10,6 @@ use serde::Deserialize;
 
 use crate::{
     SharedState,
-    domain::User,
     extract::maybe_current_user::MaybeCurrentUser,
     routes::SharedContext,
     util::pagination::{PaginatedResponse, Pagination},
@@ -31,7 +30,7 @@ struct MemberSearch {
 #[template(path = "members/members.html")]
 struct MembersTemplate {
     shared: SharedContext,
-    users: PaginatedResponse<User>,
+    users: PaginatedResponse<UserView>,
 }
 
 async fn members(

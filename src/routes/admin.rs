@@ -1,6 +1,9 @@
 use crate::{
     SharedState,
-    domain::{User, rbac::Role, user::UpdateUser},
+    domain::{
+        rbac::Role,
+        user::{UpdateUser, UserView},
+    },
     util::htmx::HTMX,
 };
 
@@ -39,13 +42,13 @@ struct UserSearch {
 #[template(path = "admin/users.html")]
 struct AdminUsersTemplate {
     shared: SharedContext,
-    users: PaginatedResponse<User>,
+    users: PaginatedResponse<UserView>,
 }
 
 #[derive(Template, WebTemplate)]
 #[template(path = "admin/view_user.html")]
 struct AdminViewUserTemplate {
-    user: User,
+    user: UserView,
 }
 
 #[derive(Deserialize)]

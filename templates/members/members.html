@@ -69,10 +69,9 @@
 														>{% endif %}
 													</div>
 													<div>
-														{% if let Some(hometown_id) =
-														user.hometown_id %} {{ hometown_id }} {%
-														endif %} {% if let Some(runner_id) =
-														user.runner_id %}
+														{% if let Some(hometown) = user.hometown %}
+														{{ hometown }} {% endif %} {% if let
+														Some(runner_id) = user.runner_id %}
 														<span class="muted">#{{ runner_id }}</span>
 														{% endif %}
 													</div>

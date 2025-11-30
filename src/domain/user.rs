@@ -3,7 +3,7 @@ use serde::{Deserialize, Serialize};
 use sqlx::FromRow;
 
 use crate::{
-    domain::rbac::Role,
+    domain::{Town, rbac::Role},
     infrastructure::auth::GoogleUser,
     util::{StringExt, pagination::Paginatable, validation::Validate},
 };
@@ -102,17 +102,15 @@ impl Paginatable for UserView {
 
 #[derive(Deserialize, Serialize, Default, Debug)]
 pub struct UpdateRunnerInfo {
-    pub runner_id: String,
+    pub runner_id: i64,
     pub first_name: String,
     pub last_name: String,
-    pub hometown_id: Option<String>,
+    pub hometown_id: Option<i64>,
 }
 
 impl Validate for UpdateRunnerInfo {
     fn validate(&self) -> Result<(), String> {
-        if self.runner_id.is_whitespace_or_empty() {
-            return Err("Member ID cannot be empty".to_string());
-        }
+        RunnerId::parse(self.runner_id)?;
 
         if self.first_name.is_whitespace_or_empty() {
             return Err("First name cannot be empty".to_string());
@@ -122,7 +120,18 @@ impl Validate for UpdateRunnerInfo {
             return Err("Last name cannot be empty".to_string());
         }
 
-        RunnerId::try_from(self.runner_id.as_ref())?;
+        if self.first_name.len() > 25 {
+            return Err("First name cannot be longer than 25 characters".to_string());
+        }
+
+        if self.last_name.len() > 25 {
+            return Err("Last name cannot be longer than 25 characters".to_string());
+        }
+
+        if self.hometown_id.is_some_and(Town::is_not_valid) {
+            return Err("Town is not valid".to_string());
+        }
+
         Ok(())
     }
 }
@@ -140,14 +149,5 @@ impl RunnerId {
             return Ok(id);
         }
         Err("Invalid Member ID".to_string())
-    }
-}
-
-impl TryFrom<&str> for RunnerId {
-    type Error = String;
-
-    fn try_from(value: &str) -> Result<Self, Self::Error> {
-        let id = value.parse::<i64>().map_err(|_| "Invalid Member ID")?;
-        Self::parse(id).map(Self)
     }
 }

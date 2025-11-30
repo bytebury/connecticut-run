@@ -14,20 +14,14 @@ pub fn routes() -> Router<SharedState> {
 #[derive(Template, WebTemplate, Default)]
 #[template(path = "submit_town.html")]
 struct SubmitTownPage {
-    form: SubmitTownForm,
+    _form: CompletedTown,
     towns: Vec<Town>,
     max_race_date: NaiveDate,
 }
 
+// TODO: When we do submit towns
 #[derive(Deserialize, Debug, Default)]
-struct SubmitTownForm {
-    town_id: Option<String>,
-    race_id: Option<String>,
-    distance_val: Option<String>,
-    distance_unit: Option<String>,
-    race_date: Option<NaiveDate>,
-    notes: Option<String>,
-}
+struct CompletedTown {}
 
 async fn submit_town_form(
     State(state): State<SharedState>,
